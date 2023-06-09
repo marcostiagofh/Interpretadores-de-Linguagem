@@ -1,0 +1,25 @@
+d = input("Dimensao: ");
+v = input("Value: ");
+
+x = [].fill(d, d, v);
+y = x.mul([].id(d, d));
+
+f = 1;
+
+r = 0;
+while r < x.rows()
+  c = y.cols();
+  while c > 0
+    if (x.value(r, (c-1)) - y.value(r, (c-1))) != 0
+      f = 0;
+    end
+    c = c-1;
+  end
+  r = r+1;
+end
+
+if f <= 0
+  show("Error");
+else
+  show("Ok");
+end

@@ -1,0 +1,32 @@
+# get the user
+set user=$("whoami");
+
+# get and print the effective uid
+set uid=$("cat /etc/passwd | grep '^" . ${user} . ":' | cut -f 3 -d':'");
+print "uid=" . ${uid} . "(" . $user . ") ";
+
+# get the gid/group and print it
+set gid=$("cat /etc/passwd | grep '^" . ${user} . ":' | cut -f 4 -d':'");
+set group=$("cat /etc/group | grep '^.*:.*:" . ${gid} . ":.*$' | cut -f 1 -d':'");
+print "gid=" . ${gid} . "(" . ${group} . ") ";
+
+# print the groups
+print "groups=" . ${gid} . "(" . ${group} . ")";
+for line in $("cat /etc/group | sed 's/#.*//g' | sed '/^[[:space:]]*$/ d'"); do
+    # find each group
+    set gname=$("echo -n '" . ${line} . "' | cut -f 1 -d':'");
+
+    # ignore the default group
+    if [ ${gname} -ne ${group} ]; then
+        # find the number
+        set gnumber=$("echo -n '" . ${line} . "' | cut -f 3 -d':'");
+
+        # check each group users for possible match
+        for grp in $("echo -n '" . ${line} . "' | cut -f 4 -d':' | tr ',' '\n'"); do
+            if [ ${grp} -eq ${user} ]; then
+                print "," . ${gnumber} . "(" . ${gname} . ")";
+            fi
+        done
+    fi
+done
+println "";

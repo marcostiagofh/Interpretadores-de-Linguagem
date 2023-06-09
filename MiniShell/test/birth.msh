@@ -1,0 +1,4 @@
+print "How old are you? ";
+read age;
+set year=$((2016 - age));
+println "You were born in " . ${year} . ".";

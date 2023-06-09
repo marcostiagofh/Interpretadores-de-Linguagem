@@ -1,0 +1,1 @@
+show([].rand(input("a: "), input("b: ")).opposed().transposed().mul(input("x: ").val(0, 0);

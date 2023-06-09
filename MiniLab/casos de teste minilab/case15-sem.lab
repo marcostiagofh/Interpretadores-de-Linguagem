@@ -1,0 +1,5 @@
+n = 3;
+x = [].rand(n, n);
+y = [].rand(n, n);
+z = x + y;
+show(z);

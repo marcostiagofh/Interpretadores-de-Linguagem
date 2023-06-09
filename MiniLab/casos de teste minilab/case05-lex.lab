@@ -1,0 +1,4 @@
+dim = input("Entre com a dimensao: ");
+for c = [].seq(0, dim-1) {
+  show(c);
+}

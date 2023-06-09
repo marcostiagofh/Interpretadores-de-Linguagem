@@ -1,0 +1,2 @@
+matrix = [].rand(3, 3);
+show(matrix.transposta());

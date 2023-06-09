@@ -1,0 +1,19 @@
+x = [].rand(input("width: "), input("height: "));
+
+o = x.opposed();
+s = x.sum(o);
+
+n = 0;
+for r = [].seq(0, x.rows())
+  for c = [].iseq(x.cols()-1, 0)
+    if s.value(r, c) == 0
+      n = n + 1;
+    end
+  end
+end
+
+if n != x.size()
+  show("Error");
+else
+  show("Ok");
+end
